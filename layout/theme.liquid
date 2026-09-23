@@ -54,7 +54,7 @@
   
 
   <script>
-    window.GUNLOUPE_API = "https://collaboration-assumes-shed-smoke.trycloudflare.com";
+    window.GUNLOUPE_API = "https://prohibited-bowl-more-exhibition.trycloudflare.com";
   </script>
 </head>
 
@@ -624,10 +624,10 @@
             // Only redirect if user still has no type (overlay will re-appear anyway)
             // This handles the edge case of direct URL navigation
             const currentPath = window.location.pathname;
-            const homePaths = ['/', '/en/'];
+            const homePaths = ['/', {{ routes.root_url | json }}, {{ routes.root_url | append: '/' | replace: '//', '/' | json }}];
             if (!homePaths.includes(currentPath)) {
               window.location.replace(
-                (window.Shopify?.locale === 'en' ? '/en/' : '/')
+                {{ routes.root_url | json }}
               );
             }
           }
@@ -674,7 +674,7 @@
         {%- unless gl_current_path contains 'editar-perfil' or gl_current_path contains 'edit-profile' -%}
           <script>
             window.location.replace(
-              (window.Shopify && window.Shopify.locale === 'en') ? '/en/pages/edit-profile' : '/pages/editar-perfil'
+              {% if request.locale.iso_code == 'en' %}{{ routes.root_url | append: '/pages/edit-profile' | replace: '//', '/' | json }}{% else %}'/pages/editar-perfil'{% endif %}
             );
           </script>
           <style>body { visibility: hidden !important; }</style>

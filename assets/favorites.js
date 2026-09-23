@@ -4,7 +4,7 @@
 // customer metafield custom.favorites_items
 
 (function () {
-  const BACKEND_URL = window.GUNLOUPE_API || "https://collaboration-assumes-shed-smoke.trycloudflare.com";
+  const BACKEND_URL = window.GUNLOUPE_API || "https://prohibited-bowl-more-exhibition.trycloudflare.com";
   const CACHE_KEY = 'gunloupe_favorites_cache';
   const CACHE_TTL = 30000; // 30 seconds
 

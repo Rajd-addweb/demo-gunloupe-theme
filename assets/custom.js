@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
           const res = await fetch(
-            (window.GUNLOUPE_API || "https://collaboration-assumes-shed-smoke.trycloudflare.com") + "/customer-user-type/" +
+            (window.GUNLOUPE_API || "https://prohibited-bowl-more-exhibition.trycloudflare.com") + "/customer-user-type/" +
               customerId,
             {
               method: "POST",
@@ -232,11 +232,9 @@ document.addEventListener("DOMContentLoaded", () => {
               overlay.remove();
               document.body.style.overflow = "";
               // Both types now land on the profile page — business mandatory, private optional
-              const isEN =
-                window.GunloupeRoutes && window.GunloupeRoutes.prefix === "/en";
-              window.location.href = isEN
-                ? "/en/pages/edit-profile"
-                : "/pages/editar-perfil";
+              window.location.href =
+                (window.GunloupeRoutes && window.GunloupeRoutes.editProfile) ||
+                "/pages/editar-perfil";
             }, 300);
           } else {
             throw new Error(data.error || "Save failed");
@@ -1104,13 +1102,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function withLocale(url) {
-  const locale = window.Shopify?.locale || "";
-  if (!locale || locale === "es") return url;
+  const prefix = (window.GunloupeRoutes && window.GunloupeRoutes.prefix) || "";
+  if (!prefix) return url;
 
   // avoid double prefix
-  if (url.startsWith(`/${locale}`)) return url;
+  if (url === prefix || url.startsWith(`${prefix}/`)) return url;
 
-  return `/${locale}${url}`;
+  return `${prefix}${url}`;
 }
 
 // filtersidebar close on click ------------------------------------

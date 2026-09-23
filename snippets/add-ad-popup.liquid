@@ -23,7 +23,7 @@
     <p style="margin-bottom:24px;color:#666;">{{ 'custom.sell_requirement_message' | t }}</p>
     <div class="popup-actions">
       <button class="button button-secondary btn-cancel" id="not-in-armorer-cancel">{{ 'custom.cancel' | t }}</button>
-      <a href="{{ pages['mi-armero'].url }}" class="button is-brand">{{ 'custom.go_to_armorer' | t }}</a>
+      <a href="{{ pages['mi-armero'].url | default: pages['my-gun-safe'].url }}" class="button is-brand">{{ 'custom.go_to_armorer' | t }}</a>
     </div>
   </div>
 </div>
@@ -419,7 +419,7 @@
 
   var SKIP_ARMORER_CHECK = {{ skip_armorer_check | json }};
 
-  var _FC = {% if request.locale.iso_code == 'en' %}'/en/collections/firearms'{% else %}'/collections/armas'{% endif %};
+  var _FC = {% if request.locale.iso_code == 'en' %}'{{ routes.collections_url }}/firearms'{% else %}'/collections/armas'{% endif %};
 
   var STOREFRONT_TOKEN = 'cef86b403fa3eef900f70170cec5acb8';
   var STOREFRONT_API   = 'https://gunloupe.myshopify.com/api/2024-01/graphql.json';
@@ -447,7 +447,7 @@
   };
 
   (function () {
-    var BACKEND_URL     = 'https://collaboration-assumes-shed-smoke.trycloudflare.com';
+    var BACKEND_URL     = 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
     var CUSTOMER_ID     = '{{ customer.id }}';
     var IS_PRIVATE_USER = '{{ customer.metafields.custom.user_type.value }}' !== 'business';
     var _savedAlias     = {{ customer.metafields.custom.alias.value | default: '' | json }};
@@ -2383,7 +2383,7 @@
             toast.remove();
             window.location.href =
               (window.GunloupeRoutes || {}).myAdverts ||
-              '{{ pages["anuncios"].url }}';
+              '{{ pages["anuncios"].url | default: pages["my-ads"].url }}';
           }
 
         } else {
