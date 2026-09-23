@@ -569,7 +569,7 @@
 
     var _armorerMismatchMsg = {{ 'custom.armorer_mismatch_msg' | t | json }};
 
-    var _FC = {% if request.locale.iso_code == 'en' %}'/en/collections/firearms'{% else %}'/collections/armas'{% endif %};
+    var _FC = {% if request.locale.iso_code == 'en' %}'{{ routes.collections_url }}/firearms'{% else %}'/collections/armas'{% endif %};
     var STOREFRONT_TOKEN = 'cef86b403fa3eef900f70170cec5acb8';
     var STOREFRONT_API = 'https://gunloupe.myshopify.com/api/2024-01/graphql.json';
     var PARAM_TO_KEY = {
@@ -579,7 +579,7 @@
     };
 
     (function() {
-      var BACKEND_URL = 'https://collaboration-assumes-shed-smoke.trycloudflare.com';
+      var BACKEND_URL = 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
       var CUSTOMER_ID = '{{ customer.id }}';
 
       // ── State ────────────────────────────────────────────────────────────────
@@ -1281,7 +1281,7 @@
         // Model has zero dependency on Type/Subtype/Brand resolution — it.title/handle/image
         // are already known synchronously from the click — so set it immediately rather than
         // waiting on anything below. This also makes the popup feel responsive right away.
-        var qsLocalePrefix = {% if request.locale.iso_code == 'en' %}'/en'{% else %}''{% endif %};
+        var qsLocalePrefix = {% if routes.root_url == '/' %}''{% else %}{{ routes.root_url | json }}{% endif %};
         // IMPORTANT: must be an absolute URL, not a relative path — Shopify's url-type
         // product_url field rejects a bare "/products/handle" path with no scheme.
         // window.location.origin (NOT a hardcoded domain) gives the correct domain whether

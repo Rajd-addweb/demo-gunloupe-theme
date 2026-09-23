@@ -25,12 +25,12 @@
   # handle (/pages/clasificados vs /en/pages/classifieds), so a raw URL would
   # 404 for every English visitor. Mirrors snippets/gunloupe-routes.liquid,
   # which is the JS-side copy of this map.
-  assign lp = ''
-  if request.locale.iso_code != 'es'
-    assign lp = '/' | append: request.locale.iso_code
+  assign lp = routes.root_url
+  if lp == '/'
+    assign lp = ''
   endif
   assign is_en = false
-  if lp == '/en'
+  if request.locale.iso_code == 'en'
     assign is_en = true
   endif
 -%}
@@ -59,27 +59,27 @@
             when 'clasificados'
               assign href = '/pages/clasificados'
               if is_en
-                assign href = '/en/pages/classifieds'
+                assign href = lp | append: '/pages/classifieds'
               endif
             when 'comparador'
               assign href = '/pages/comparison-tool'
               if is_en
-                assign href = '/en/pages/comparator'
+                assign href = lp | append: '/pages/comparator'
               endif
             when 'mi_armero'
               assign href = '/pages/mi-armero'
               if is_en
-                assign href = '/en/pages/my-gun-safe'
+                assign href = lp | append: '/pages/my-gun-safe'
               endif
             when 'favoritos'
               assign href = '/pages/favoritos'
               if is_en
-                assign href = '/en/pages/favourites'
+                assign href = lp | append: '/pages/favourites'
               endif
             when 'armas'
               assign href = '/collections/armas'
               if is_en
-                assign href = '/en/collections/firearms'
+                assign href = lp | append: '/collections/firearms'
               endif
             when 'blog'
               assign href = lp | append: '/blogs/blog'

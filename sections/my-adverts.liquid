@@ -30,7 +30,7 @@
           </svg>
           <h3>{{ 'custom.private_user_no_access_title' | t }}</h3>
           <p style="width: 100%; max-width: 660px; color: color-mix( in srgb, var(--color-foreground) 75%, var(--color-background) );">{{ 'custom.private_user_no_access_message' | t }}</p>
-          <a href="{{ pages['clasificados'].url | default: '/pages/clasificados' }}" class="button is-small comparator-browse-btn">
+          <a href="{{ pages['clasificados'].url | default: pages['classifieds'].url | default: '/pages/clasificados' }}" class="button is-small comparator-browse-btn">
             {{ 'custom.browse_classifieds' | t }}
           </a>
         </div>
@@ -672,7 +672,7 @@
     }
 
     (function () {
-      const BACKEND_URL = 'https://collaboration-assumes-shed-smoke.trycloudflare.com';
+      const BACKEND_URL = 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
       const CUSTOMER_ID = '{{ customer.id }}';
 
       const R = window.GunloupeRoutes || {};

@@ -2,7 +2,7 @@
   <div class="popup-box">
     <div>
       {% render 'icon-accountcircle' %}
-      <a class="color-primary" href="{{ pages['perfil'].url | default: '/pages/perfil' }}">{{ 'custom.profile' | t }}</a>
+      <a class="color-primary" href="{{ pages['perfil'].url | default: pages['profile'].url | default: '/pages/perfil' }}">{{ 'custom.profile' | t }}</a>
     </div>
     <div>
       {% render 'icon-logout' %}
@@ -25,12 +25,12 @@
   <div class="popup-box">
     <div>
       {% render 'icon-accountcircle' %}
-      <a class="color-primary" href="{{ pages['perfil'].url | default: '/pages/perfil' }}">{{ 'custom.profile' | t }}</a>
+      <a class="color-primary" href="{{ pages['perfil'].url | default: pages['profile'].url | default: '/pages/perfil' }}">{{ 'custom.profile' | t }}</a>
     </div>
     {% if is_admin_user %}
     <div>
       {% render 'icon-accountcircle' %}
-      <a class="color-primary" href="{{ pages['consola-de-anuncios'].url | default: '/pages/consola-de-anuncios' }}">{{ 'custom.admin' | t }}</a>
+      <a class="color-primary" href="{{ pages['consola-de-anuncios'].url | default: pages['ads-console'].url | default: '/pages/consola-de-anuncios' }}">{{ 'custom.admin' | t }}</a>
     </div>
     {% endif %}
     <div>

@@ -120,13 +120,13 @@
           </div>
         </div>
 
-        <a href="{{ pages['editar-perfil'].url | default: '/pages/editar-perfil' }}"
+        <a href="{{ pages['editar-perfil'].url | default: pages['edit-profile'].url | default: '/pages/editar-perfil' }}"
           class="button bg-color-orange text-block js-edit-profile-link">
           {{ 'customer.account.edit_profile' | t: default: 'Edit profile' }}
         </a>
       </div>
 
-      <a href="{{ pages['ayuda'].url }}"
+      <a href="{{ pages['ayuda'].url | default: pages['help'].url }}"
         class="button button-secondary profile-btn--contact">
         {{ 'customer.account.contact_us' | t: default: 'Contact with us' }}
       </a>

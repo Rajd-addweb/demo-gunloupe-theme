@@ -316,7 +316,7 @@
             </span>
           </button>
 
-          <a href="{{ pages['perfil'].url | default: '/pages/perfil' }}"
+          <a href="{{ pages['perfil'].url | default: pages['profile'].url | default: '/pages/perfil' }}"
             class="profile-cancel-link js-profile-cancel-link"
             id="cancelProfileEdit">
             {{ 'customer.account.cancel' | t: default: 'Regresar sin guardar los cambios' }}
@@ -345,7 +345,7 @@
   window.__profileConfig = {
     customerId : {{ customer.id | json }},
     userType   : {{ user_type | json }},
-    apiBase    : 'https://collaboration-assumes-shed-smoke.trycloudflare.com',
+    apiBase    : 'https://prohibited-bowl-more-exhibition.trycloudflare.com',
     returnUrl  : (function(){
       var ut = {{ user_type | json }};
       var prefix = (window.GunloupeRoutes && window.GunloupeRoutes.prefix) || ''; // '' for ES, '/en' for EN

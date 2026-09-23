@@ -55,7 +55,7 @@
                 </svg>
               </div>
               
-              <form action="{% if request.locale.iso_code == 'en' %}/en/collections/firearms{% else %}/collections/armas{% endif %}" method="get" class="mobile-search-form home-product-search__input">
+              <form action="{% if request.locale.iso_code == 'en' %}{{ routes.collections_url }}/firearms{% else %}/collections/armas{% endif %}" method="get" class="mobile-search-form home-product-search__input">
                 <input 
                   type="text" 
                   name="q" 

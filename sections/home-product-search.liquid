@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (currentQuery.length < 2) { restoreFeatured(); return; }
       if (currentQuery !== query) return;
 
-      fetch('/en/search?q=' + encodeURIComponent(query) + '&type=product&section_id=search-template')
+      fetch({{ routes.search_url | json }} + '?q=' + encodeURIComponent(query) + '&type=product&section_id=search-template')
         .then(function (res) { return res.text(); })
         .then(function (html) {
           // Discard if query changed or cleared while fetching
