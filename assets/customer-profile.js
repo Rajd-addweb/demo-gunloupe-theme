@@ -5,7 +5,7 @@
   "use strict";
 
   const cfg = window.__profileConfig || {};
-  const API_BASE = cfg.apiBase || "https://prohibited-bowl-more-exhibition.trycloudflare.com";
+  const API_BASE = cfg.apiBase || window.GUNLOUPE_API || "https://prohibited-bowl-more-exhibition.trycloudflare.com";
   const customerId = cfg.customerId;
 
   // ── Copy ─────────────────────────────────────────────────────────────────

@@ -54,7 +54,19 @@
   
 
   <script>
-    window.GUNLOUPE_API = "https://prohibited-bowl-more-exhibition.trycloudflare.com";
+    // Local dev (127.0.0.1:9292) and theme previews on the store domain use
+    // the local backend (demo-store/server on port 4000). The published theme
+    // keeps the remote URL. The ?preview_theme_id= param is dropped after
+    // login/navigation, so the theme role Shopify reports is checked too.
+    (function () {
+      var GUNLOUPE_API_LOCAL_URL = "http://127.0.0.1:4000";
+      var GUNLOUPE_API_PROD_URL = "https://prohibited-bowl-more-exhibition.trycloudflare.com";
+      var isLocalHost = ["127.0.0.1", "localhost"].indexOf(window.location.hostname) !== -1;
+      var themeRole = window.Shopify && window.Shopify.theme && window.Shopify.theme.role;
+      var isThemePreview = /[?&]preview_theme_id=/.test(window.location.search) ||
+        (!!themeRole && themeRole !== "main");
+      window.GUNLOUPE_API = (isLocalHost || isThemePreview) ? GUNLOUPE_API_LOCAL_URL : GUNLOUPE_API_PROD_URL;
+    })();
   </script>
 </head>
 
@@ -856,7 +868,7 @@
   </script>
 
   <script>
-    var BACKEND_URL = 'https://shopify-gunloupe.addwebprojects.com';
+    var BACKEND_URL = window.GUNLOUPE_API || 'https://shopify-gunloupe.addwebprojects.com';
     // Seed from the last successfully-fetched rate (cached below) rather
     // than always starting from a fixed constant — if today's refresh is
     // slow or fails, this is still far closer to correct than a rate that

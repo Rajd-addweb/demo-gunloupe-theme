@@ -672,7 +672,7 @@
     }
 
     (function () {
-      const BACKEND_URL = 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
+      const BACKEND_URL = window.GUNLOUPE_API || 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
       const CUSTOMER_ID = '{{ customer.id }}';
 
       const R = window.GunloupeRoutes || {};
@@ -1419,6 +1419,8 @@
         const loadingEl = document.getElementById('my-adverts-loading');
         const emptyEl   = document.getElementById('my-adverts-empty');
         const listEl    = document.getElementById('my-adverts-list');
+        // Private accounts get the "gun shops only" notice, which has no list.
+        if (!loadingEl || !emptyEl || !listEl) return;
         loadingEl.style.display = 'block'; emptyEl.style.display = 'none';
         listEl.style.display = 'none'; listEl.innerHTML = '';
         const toolbar = document.getElementById('my-ads-toolbar');
