@@ -1110,7 +1110,7 @@ Access restricted to admin emails defined in ADMIN_EMAILS array
   (function () {
     'use strict';
 
-    const API = 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
+    const API = window.GUNLOUPE_API || 'https://prohibited-bowl-more-exhibition.trycloudflare.com';
     const PER_PAGE = 10;
 
      // ── Get dynamic route ──────────────────────────────────────────────────

@@ -345,7 +345,7 @@
   window.__profileConfig = {
     customerId : {{ customer.id | json }},
     userType   : {{ user_type | json }},
-    apiBase    : 'https://prohibited-bowl-more-exhibition.trycloudflare.com',
+    apiBase    : (window.GUNLOUPE_API || 'https://prohibited-bowl-more-exhibition.trycloudflare.com'),
     returnUrl  : (function(){
       var ut = {{ user_type | json }};
       var prefix = (window.GunloupeRoutes && window.GunloupeRoutes.prefix) || ''; // '' for ES, '/en' for EN
